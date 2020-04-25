@@ -52,17 +52,17 @@ int main(int argc, char *argv[]){
     }
 
     unsigned int tour_joueur = 0; // 0 = joueur1, 1 = joueur2
-    unsigned int pion_a_deplacer = 0;
-    int gagne = 0; // 0 = la partie continue, 1 = partie terminée;
+    unsigned int id_pion_a_deplacer = 0;
+    int qui_a_gagne = 0; // 0 = la partie continue, 1 = partie terminée;
 
     /* boucle principale */
-    do {
+    while(1) {
 
         /* les pions sont en face */
-
+        // break /* on sort de la boucle principale */
 
         /* si au 30eme tour, il y a un pion sur la ligne de départ */
-
+        // break /* on sort de la boucle principale */
 
         /* dessine le plateau */
         printf("     0      1      2      3      4      5      6      7      8      9   \n");
@@ -88,15 +88,17 @@ int main(int argc, char *argv[]){
         printf("C'est au tour du joueur : %d\n", tour_joueur);
         do{
             printf("Selectionnez le pion à déplacer: ");
-            scanf("%d", &pion_a_deplacer);
-        } while ((pion_a_deplacer < 0) || (pion_a_deplacer > 7));// tant que le joueur n'a pas sélectionné un pion entre 0 et 8
+            scanf("%d", &id_pion_a_deplacer);
+        } while ((id_pion_a_deplacer < 0) || (id_pion_a_deplacer > 7));// tant que le joueur n'a pas sélectionné un pion entre 0 et 8
 
 
         /* changement de joueur */
         if (tour_joueur == 0) tour_joueur = 1;
         else tour_joueur = 0;
 
-    } while (gagne != 1);
+    }
 
+    printf("Congratulation, the player %d win !\n", qui_a_gagne);
+    printf("Bye!\n");
     return 0;
 }

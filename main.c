@@ -51,20 +51,24 @@ int main(int argc, char *argv[]){
         plateau[joueur2[i].posX][joueur2[i].posY] = &joueur2[i];
     }
 
-
     unsigned int tour_joueur = 0; // 0 = joueur1, 1 = joueur2
     unsigned int pion_a_deplacer = 0;
+    int gagne = 0; // 0 = la partie continue, 1 = partie terminée;
 
     /* boucle principale */
-    while (1){
+    do {
 
         /* les pions sont en face */
 
+
         /* si au 30eme tour, il y a un pion sur la ligne de départ */
 
+
         /* dessine le plateau */
+        printf("     0      1      2      3      4      5      6      7      8      9   \n");
         for (unsigned x = 0; x < 10; x ++){
-            printf("|-----||-----||-----||-----||-----||-----||-----||-----||-----||-----|\n");
+            printf("  |-----||-----||-----||-----||-----||-----||-----||-----||-----||-----|\n");
+            printf("%d ", x);
             for (unsigned y = 0; y < 10; y++){
                 if (plateau[x][y] != NULL){
                     if (plateau[x][y]->type == 0) { printf("|J%d_C%d|", plateau[x][y]->joueur, plateau[x][y]->nb_pion); } // Si pion carré
@@ -77,14 +81,22 @@ int main(int argc, char *argv[]){
             }
             printf("\n");
         }
+        printf("  |-----||-----||-----||-----||-----||-----||-----||-----||-----||-----|\n");
 
 
         /* demande une action au joueur */
-        printf("C'est au tour du joueur n°: %d\n", tour_joueur);
+        printf("C'est au tour du joueur : %d\n", tour_joueur);
         do{
             printf("Selectionnez le pion à déplacer: ");
             scanf("%d", &pion_a_deplacer);
         } while ((pion_a_deplacer < 0) || (pion_a_deplacer > 7));// tant que le joueur n'a pas sélectionné un pion entre 0 et 8
-    }
+
+
+        /* changement de joueur */
+        if (tour_joueur == 0) tour_joueur = 1;
+        else tour_joueur = 0;
+
+    } while (gagne != 1);
+
     return 0;
 }
